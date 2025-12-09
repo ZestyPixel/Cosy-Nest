@@ -1,0 +1,38 @@
+<div class="row"><!--class row is a bootstrap class to create a row-->
+    <div class="col-8 offset-2"><!--class col-8 is a bootstrap class to create a column taking 8/12th of the width-->
+        <br><br>
+        <h3>Create a New Listing</h3>
+        <form method="POST" action="/listings">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input name="listing[title]" placeholder="Add a catchy title!" type="text" class="form-control"> <!--We write all the names as part of listing object so that when extracting the data in app.js
+                we do not have to make it an object there-->
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="listing[description]" placeholder="Enter description" type="text" class="form-control"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image Link</label>
+                <input name="listing[image]" placeholder="Enter image URL/Link" type="text" class="form-control">
+            </div>
+            <div class="row">
+                <div class="mb-3 col-md-3"> <!--mb-3 adds margin bottom of 3-->
+                    <label for="price" class="form-label">Price</label>
+                    <input name="listing[price]" placeholder="Enter price" type="number" class="form-control">
+                </div>
+                <div class="mb-3 col-md-4"> <!--col-md-4 makes this div take 4/12th of width on medium and larger screens-->
+                    <label for="country" class="form-label">Country</label>
+                    <input name="listing[country]" placeholder="Enter country name" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input name="listing[location]" placeholder="Enter location (ex: Jaipur, Rajasthan)" type="text" class="form-control">
+            </div>
+            <br><br>
+            <button class="btn btn-dark add-btn">Add</button>
+            <br><br><br>
+        </form>
+    </div>
+</div>
