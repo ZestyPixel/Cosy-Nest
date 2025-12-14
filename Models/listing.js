@@ -8,7 +8,7 @@ const listingSchema = new Schema({
     },
     description: String,
     image: {
-        type: String, //Accepting an object
+        type: String,
         default: "https://unsplash.com/photos/gray-wooden-house-178j8tJrNlc",
         set: (v)=> v === "" ? "https://unsplash.com/photos/gray-wooden-house-178j8tJrNlc" : v,
     },
