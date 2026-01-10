@@ -5,7 +5,7 @@ const router = express.Router({mergeParams: true}); //What mergeParams does is i
 const wrapAsync = require("../utils/wrapAsync");
 const {reviewSchema} = require('../schema.js');
 const ExpressError = require('../utils/ExpressError');
-const Listing = require("../Models/listing");
+const Listing = require("../models/listing.js");
 
 const validateReview = (req, res, next)=>{
     let {error} = reviewSchema.validate(req.body);
@@ -27,6 +27,8 @@ router.post("/reviews", validateReview, wrapAsync(async(req, res)=>{
     await newReview.save();
     await listing.save();
 
+    req.flash("success", "Review Posted");
+
     res.redirect(`/listings/${listing._id}`);
 }));
 
@@ -35,6 +37,7 @@ router.delete("/:reviewId", wrapAsync(async(req, res)=>{
     let{id, reviewId} = req.params;
     await Listing.findByIdAndUpdate(id, {$pull : {reviews: reviewId}}); //This is the pull operator, what it does is it removes the value from the array which matches the value given.
     await Review.findByIdAndDelete(reviewId);
+    req.flash("success", "Review Deleted");
     res.redirect(`/listings/${id}`);
 }));
 

@@ -1,0 +1,25 @@
+Authentication: The process of verifying the identity of a user or system, often through credentials like usernames and passwords.
+Authorisation: Means to verify what a user is allowed to do within a system or application, typically following authentication.
+
+Hashing: A method of converting data into a fixed-size string of characters, which is typically a sequence of numbers and letters. 
+It is commonly used for securely storing passwords.
+So the common flow is that when a user creates a password, the system hashes it and stores the hash. 
+When the user logs in, the system hashes the entered password and compares it to the stored hash.
+For the same input, the hash function will always produce the same output, 
+but even a small change in input will produce a significantly different hash.
+
+For every input, there is a fixed output.
+These are one way functions, meaning you cannot reverse the hash to get the original input.
+For a different input, you will get a different output with the same length.
+Small changes in input lead to large changes in output.
+
+Ex: SHA-256, MD5, bcrypt, CRC, etc.
+
+Salting: The process of adding random data (a "salt") to an input before hashing it.
+This helps protect against attacks like rainbow tables, where attackers use precomputed tables of hash values to crack passwords.
+By adding a unique salt to each password before hashing, even if two users have the same password, their hashes will be different.
+
+Pbkdf2: Password-Based Key Derivation Function 2 is a key derivation function that is part of RSA Laboratories' Public-Key Cryptography Standards (PKCS) series, specifically PKCS #5 v2.0.
+It applies a pseudorandom function, such as a hash-based message authentication code (HMAC), to the input password along with a salt value and repeats the process multiple times to produce a derived key.
+This makes it computationally expensive to brute-force passwords, enhancing security.
+It is used in passport-local-mongoose for hashing passwords.
